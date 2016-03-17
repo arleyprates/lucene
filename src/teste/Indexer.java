@@ -10,7 +10,7 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.document.FieldType;
+//import org.apache.lucene.document.FieldType;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -40,18 +40,13 @@ public class Indexer {
 	      Document document = new Document();
 
 	      //index file contents
-	      Field contentField = new Field("aa", 
-	         new FileReader(file));
+	      Field contentField = new Field(LuceneConstants.CONTENTS, new FileReader(file));
 	      
 	      //index file name
-	      Field fileNameField = new Field(LuceneConstants.FILE_NAME,
-	         file.getName(),
-	         Field.Store.YES,Field.Index.ANALYZED);
+	      Field fileNameField = new Field(LuceneConstants.FILE_NAME, file.getName(), Field.Store.YES,Field.Index.NOT_ANALYZED);
 	      
 	      //index file path
-	      Field filePathField = new Field(LuceneConstants.FILE_PATH,
-	         file.getCanonicalPath(),
-	         Field.Store.YES,Field.Index.NOT_ANALYZED);
+	      Field filePathField = new Field(LuceneConstants.FILE_PATH, file.getCanonicalPath(), Field.Store.YES,Field.Index.NOT_ANALYZED);
 
 	      document.add(contentField);
 	      document.add(fileNameField);
@@ -67,8 +62,7 @@ public class Indexer {
 	      writer.addDocument(document);
 	   }
 
-	   public int createIndex(String dataDirPath, FileFilter filter) 
-	      throws IOException{
+	   public int createIndex(String dataDirPath, FileFilter filter) throws IOException{
 	      //get all files in the data directory
 	      File[] files = new File(dataDirPath).listFiles();
 

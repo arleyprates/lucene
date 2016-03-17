@@ -14,12 +14,12 @@ public class LuceneTester {
 	Indexer indexer;
 	Searcher searcher;
 
-	public static void main(String[] args) throws java.text.ParseException {
+	public static void main(String[] args) throws java.text.ParseException, org.apache.lucene.queryparser.classic.ParseException {
 		LuceneTester tester;
 		try {
 			tester = new LuceneTester();
 			tester.createIndex();
-			tester.search("record1");
+			tester.search("Teena");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
@@ -37,7 +37,7 @@ public class LuceneTester {
 		System.out.println(numIndexed+" File indexed, time taken: "	+(endTime-startTime)+" ms");		
 	}
 
-	private void search(String searchQuery) throws IOException, ParseException, java.text.ParseException{
+	private void search(String searchQuery) throws IOException, ParseException, java.text.ParseException, org.apache.lucene.queryparser.classic.ParseException{
 		searcher = new Searcher(indexDir);
 		long startTime = System.currentTimeMillis();
 		TopDocs hits = searcher.search(searchQuery);
