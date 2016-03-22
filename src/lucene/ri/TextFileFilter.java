@@ -1,4 +1,4 @@
-package teste;
+package lucene.ri;
 
 import java.io.File;
 import java.io.FileFilter;

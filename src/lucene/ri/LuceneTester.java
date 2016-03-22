@@ -1,4 +1,4 @@
-package teste;
+package lucene.ri;
 
 import java.io.IOException;
 
@@ -15,29 +15,38 @@ public class LuceneTester {
 	Searcher searcher;
 
 	public static void main(String[] args) throws java.text.ParseException, org.apache.lucene.queryparser.classic.ParseException {
+		
 		LuceneTester tester;
+		
 		try {
+		
 			tester = new LuceneTester();
 			tester.createIndex();
-			tester.search("Teena");
+			tester.search("Sahil");
+		
 		} catch (IOException e) {
 			e.printStackTrace();
+		
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void createIndex() throws IOException{
+		
 		indexer = new Indexer(indexDir);
 		int numIndexed;
+		
 		long startTime = System.currentTimeMillis();	
 		numIndexed = indexer.createIndex(dataDir, new TextFileFilter());
 		long endTime = System.currentTimeMillis();
 		indexer.close();
-		System.out.println(numIndexed+" File indexed, time taken: "	+(endTime-startTime)+" ms");		
+		
+		System.out.println(numIndexed+ " File indexed, time taken: "	+ (endTime-startTime) + " ms");		
 	}
 
 	private void search(String searchQuery) throws IOException, ParseException, java.text.ParseException, org.apache.lucene.queryparser.classic.ParseException{
+
 		searcher = new Searcher(indexDir);
 		long startTime = System.currentTimeMillis();
 		TopDocs hits = searcher.search(searchQuery);
@@ -48,6 +57,6 @@ public class LuceneTester {
 			Document doc = searcher.getDocument(scoreDoc);
 			System.out.println("File: "+ doc.get(LuceneConstants.FILE_PATH));
 		}
-		//searcher.close();
 	}
+	
 }

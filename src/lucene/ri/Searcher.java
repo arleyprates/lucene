@@ -1,4 +1,4 @@
-package teste;
+package lucene.ri;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -24,36 +24,26 @@ public class Searcher {
 	Query query;
 
 	public Searcher(String indexDirectoryPath) throws IOException{
+		
 		Directory indexDirectory = FSDirectory.open(Paths.get(indexDirectoryPath));
 		IndexReader ir = DirectoryReader.open(indexDirectory);
-		indexSearcher = new IndexSearcher(ir);
+		indexSearcher = new IndexSearcher(ir);	
 		queryParser = new QueryParser(LuceneConstants.CONTENTS, new StandardAnalyzer());
+		
 	}
 
 	public TopDocs search(String searchQuery) throws IOException, ParseException, org.apache.lucene.queryparser.classic.ParseException{
 		
-		///QueryParser.parse(searchQuery);
-		//BasicQueryFactory factory = new BasicQueryFactory(1000 /*maxBasicQueries*/);
-		//Query luceneQuery = QueryParser.parse(searchQuery).makeLuceneQueryField(LuceneConstants.CONTENTS, factory);
-		///topDocs = searcher.search(luceneQuery, 1000);
-		//return indexSearcher.search(luceneQuery, LuceneConstants.MAX_SEARCH);*/
-		//return indexSearcher.searchFred(luceneQuery, LuceneConstants.MAX_SEARCH);
-		//Query query = QueryParser.parse(searchQuery).makeLuceneQueryField(LuceneConstants.CONTENTS, factory);
-	      //return indexSearcher.search(query, LuceneConstants.MAX_SEARCH);
-		//Query query = QueryParser.parse(searchQuery).makeLuceneQueryField(LuceneConstants.CONTENTS, factory);
-        //return indexSearcher.search(query, LuceneConstants.MAX_SEARCH); 
-
 		query = queryParser.parse(searchQuery);
+		
 		return indexSearcher.search(query, LuceneConstants.MAX_SEARCH);
 		
 	}
 
-	public Document getDocument(ScoreDoc scoreDoc) 
-			throws CorruptIndexException, IOException{
-		return indexSearcher.doc(scoreDoc.doc);	
+	public Document getDocument(ScoreDoc scoreDoc) throws CorruptIndexException, IOException{
+		
+		return indexSearcher.doc(scoreDoc.doc);
+		
 	}
 
-	//public void close() throws IOException{
-		//indexSearcher.
-	//}
 }

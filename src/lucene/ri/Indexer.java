@@ -1,4 +1,4 @@
-package teste;
+package lucene.ri;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -22,22 +22,30 @@ public class Indexer {
 	 private IndexWriter writer;
 	 
 	 public Indexer(String indexDirectoryPath) throws IOException{
-	      //this directory will contain the indexes
+	      
+		  //this directory will contain the indexes
 	      Directory indexDirectory = FSDirectory.open(Paths.get(indexDirectoryPath));
+	      
 	      //create default analyzer
 	      Analyzer analyzer = new StandardAnalyzer();
+	      
 	      //conf to write
 	      IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
+	      
 	      //create the indexer
 	      writer = new IndexWriter(indexDirectory, iwc);
+	      
 	   }
 
 	   public void close() throws CorruptIndexException, IOException{
-	      writer.close();
+		   
+		   writer.close();
+		   
 	   }
 
 	   private Document getDocument(File file) throws IOException{
-	      Document document = new Document();
+	     
+		   Document document = new Document();
 
 	      //index file contents
 	      Field contentField = new Field(LuceneConstants.CONTENTS, new FileReader(file));
@@ -56,26 +64,31 @@ public class Indexer {
 	   }   
 
 	   private void indexFile(File file) throws IOException{
-	      System.out.println("Indexing "+file.getCanonicalPath());
+	      
+		  System.out.println("Indexing "+ file.getCanonicalPath());
 	      Document document = getDocument(file);
 	      
 	      writer.addDocument(document);
+	      
 	   }
 
 	   public int createIndex(String dataDirPath, FileFilter filter) throws IOException{
-	      //get all files in the data directory
+	     
+		  //get all files in the data directory
 	      File[] files = new File(dataDirPath).listFiles();
 
 	      for (File file : files) {
-	         if(!file.isDirectory()
+	         
+	    	  if (!file.isDirectory()
 	            && !file.isHidden()
 	            && file.exists()
 	            && file.canRead()
-	            && filter.accept(file)
-	         ){
+	            && filter.accept(file))
+	    	  {
 	            indexFile(file);
 	         }
 	      }
+	      
 	      return writer.numDocs();
 	   }
 }
