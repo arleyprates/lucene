@@ -9,8 +9,8 @@ import org.apache.lucene.search.TopDocs;
 
 public class LuceneTester {
 
-	String indexDir = "/Users/arleyprates/workspace-web/Lucene/index";
-	String dataDir = "/Users/arleyprates/workspace-web/Lucene/data";
+	String indexDir = "index";
+	String dataDir = "data";
 	Indexer indexer;
 	Searcher searcher;
 
