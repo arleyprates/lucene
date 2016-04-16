@@ -27,11 +27,8 @@ public class PrecisionandRecall {
 		File topicsFile = new File("benchmark/topics.txt");
 		File qrelsFile = new File("benchmark/qrels.txt");
 		
-		//Directory dir = FSDirectory.open(new File("index"));
 		
 		FSDirectory dir = FSDirectory.open(Paths.get("index"));
-		
-		//Searcher searcher = new IndexSearcher(dir, true);
 		
 		IndexReader ir = DirectoryReader.open(dir);
 		
@@ -61,3 +58,12 @@ public class PrecisionandRecall {
 		dir.close();
 	}
 }
+
+/*
+#1 Read TREC topics as QualityQuery[]
+#2 Create Judge from TREC Qrel file
+#3 Verify query and Judge match
+#4 Create parser to translate queries into Lucene queries
+#5 Run benchmark
+#6 Print precision and recall measures
+*/
