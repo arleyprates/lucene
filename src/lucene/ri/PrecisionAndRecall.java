@@ -20,7 +20,7 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.store.FSDirectory;
 
-public class PrecisionandRecall {
+public class PrecisionAndRecall {
 
 	public static void main(String[] args) throws Throwable {
 
