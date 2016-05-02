@@ -27,7 +27,6 @@ public class PrecisionandRecall {
 		File topicsFile = new File("benchmark/topics.txt");
 		File qrelsFile = new File("benchmark/qrels.txt");
 		
-		
 		FSDirectory dir = FSDirectory.open(Paths.get("index"));
 		
 		IndexReader ir = DirectoryReader.open(dir);
