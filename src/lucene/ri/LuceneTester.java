@@ -10,6 +10,10 @@ import org.apache.lucene.search.TopDocs;
 public class LuceneTester {
 
 	String indexDir = "index";
+	/*Essa base de dados é um conjunto de arquivos referente a um assunto. Nesse Exemplo para o apache
+	 * Vamos pegar um conjunto de outro arquivos de assunto diferente e salvar em .txt.
+	 * */
+	
 	String dataDir = "data";
 	Indexer indexer;
 	Searcher searcher;
@@ -22,9 +26,9 @@ public class LuceneTester {
 		
 			tester = new LuceneTester();
 			tester.createIndex();
-			tester.search("Sahil");
+			tester.search("apache");// O problema que aqui eu tenho que definir uma consulta
 		
-		} catch (IOException e) {
+		} catch (IOException e) {// Como ja tinha alguns indexados, ele acumula, deu 32 por isso 
 			e.printStackTrace();
 		
 		} catch (ParseException e) {
@@ -60,3 +64,5 @@ public class LuceneTester {
 	}
 	
 }
+
+	

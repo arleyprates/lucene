@@ -46,10 +46,11 @@ public class PrecisionAndRecall {
 		judge.validateData(qqs, logger); // #3
 
 		QualityQueryParser qqParser = new SimpleQQParser("title", "contents"); // #4
-
+		
 		QualityBenchmark qrun = new QualityBenchmark(qqs, qqParser, indexSearcher, docNameField);
 		
 		SubmissionReport submitLog = null;
+		
 		QualityStats stats[] = qrun.execute(judge, submitLog, logger);// #5
 
 		QualityStats avg = QualityStats.average(stats); // #6

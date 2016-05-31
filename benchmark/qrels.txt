@@ -5,7 +5,12 @@
 #
 
 0 	 0 	 apache1.0.txt     	 1
-0 	 0 	 apache1.1.txt     	 1
-0 	 0 	 apache2.1.txt     	 1
-0 	 0 	 record1.txt     	 1
-0 	 0 	 record10.txt     	 1
+0 	 0 	 apache2.0.txt     	 1
+0 	 0 	 apache3.0.txt     	 1
+0 	 0 	 apache4.0.txt     	 1
+0 	 0 	 apache5.0.txt     	 0
+0 	 0 	 apache6.0.txt     	 0
+0 	 0 	 apache7.0.txt     	 0
+0 	 0 	 apache8.0.txt     	 0
+0 	 0 	 apache9.0.txt     	 0
+
